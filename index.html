@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kost dan Kontrakan Pink Pastel</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            animation: none;
+        }
+        
+        .property-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%);
+        }
+        
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.15);
+        }
+        
+        .facility-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #fce7f3 0%, #ffffff 100%);
+        }
+        
+        .facility-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.1);
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%);
+            border: 1px solid #f9a8d4;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.1);
+        }
+        
+        .star-rating {
+            color: #f59e0b;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border: 3px solid #fce7f3;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 50%, #fce7f3 100%);
+        }
+        
+        .pink-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #f9a8d4, transparent);
+            margin: 2rem 0;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.1;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #ec4899;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(90deg, #ec4899, #f472b6);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .property-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .property-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
+        }
+
+        .image-edit-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(236, 72, 153, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .image-container:hover .image-edit-overlay {
+            opacity: 1;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="min-h-full gradient-bg"><!-- Header -->
+  <header class="bg-white shadow-lg sticky top-0 z-50 border-b-2 border-pink-100">
+   <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+     <div class="relative">
+      <h1 id="business-name" class="text-3xl font-bold text-pink-600">💕 Kost &amp; Kontrakan Cantik</h1>
+      <p id="tagline" class="text-pink-400 text-sm font-medium">Hunian Nyaman dengan Penuh Kebahagiaan</p>
+      <div class="floating-hearts">
+       💖
+      </div>
+     </div>
+     <nav class="hidden md:flex space-x-8"><a href="#home" class="nav-link text-pink-600 hover:text-pink-700 font-medium">Beranda</a> <a href="#kost" class="nav-link text-pink-600 hover:text-pink-700 font-medium">Kost</a> <a href="#kontrakan" class="nav-link text-pink-600 hover:text-pink-700 font-medium">Kontrakan</a> <a href="#fasilitas" class="nav-link text-pink-600 hover:text-pink-700 font-medium">Fasilitas</a> <a href="#testimoni" class="nav-link text-pink-600 hover:text-pink-700 font-medium">Testimoni</a> <a href="#contact" class="nav-link text-pink-600 hover:text-pink-700 font-medium">Kontak</a>
+     </nav>
+    </div>
+   </div>
+  </header><!-- Hero Section -->
+  <section id="home" class="py-20 relative overflow-hidden">
+   <div class="absolute inset-0 bg-gradient-to-r from-pink-50 via-white to-pink-50"></div>
+   <div class="container mx-auto px-6 text-center relative z-10">
+    <div class="max-w-4xl mx-auto">
+     <h2 id="hero-title" class="text-5xl font-bold text-pink-700 mb-6 leading-tight">✨ Temukan Hunian Impian Anda ✨</h2>
+     <p id="hero-description" class="text-xl text-pink-600 mb-8 max-w-3xl mx-auto leading-relaxed">Kami menyediakan kost dan kontrakan berkualitas dengan desain cantik, fasilitas lengkap, dan suasana yang nyaman untuk wanita modern</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center"><button onclick="scrollToSection('kost')" class="pink-gradient hover:shadow-lg text-white px-8 py-4 rounded-full text-lg font-semibold transition duration-300 transform hover:scale-105"> 🏠 Lihat Kost Cantik </button> <button onclick="scrollToSection('kontrakan')" class="bg-white border-2 border-pink-300 hover:bg-pink-50 text-pink-600 px-8 py-4 rounded-full text-lg font-semibold transition duration-300 transform hover:scale-105"> 🏡 Lihat Kontrakan </button>
+     </div>
+    </div>
+   </div>
+   <div class="absolute top-10 left-10 text-6xl opacity-10 animate-pulse">
+    🌸
+   </div>
+   <div class="absolute bottom-10 right-10 text-4xl opacity-10 animate-bounce">
+    💐
+   </div>
+   <section id="kost" class="py-16 bg-white relative">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 id="kost-title" class="text-5xl font-bold text-pink-700 mb-4">🌺 Pilihan Kost Terbaik 🌺</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Kost Putra -->
+      <div class="property-card rounded-2xl overflow-hidden shadow-lg border border-pink-100">
+        <div class="image-container">
+          <img id="kost1-image" src="image/putra.jpg" alt="Kost Putra Eksklusif" class="property-image w-full h-48 object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-pink-700 mb-3">💼 Kost Putra Eksklusif</h3>
+          <p class="text-pink-600 mb-4 leading-relaxed">Kamar nyaman dengan fasilitas AC, WiFi super cepat, dan kamar mandi dalam yang bersih</p>
+          <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-pink-700">Rp 800.000<span class="text-lg">/bulan</span></span>
+            <button onclick="contactWhatsApp('Kost Putra Eksklusif')" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition duration-300 transform hover:scale-105">
+              💬 Tanya Detail
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Kost Putri -->
+      <div class="property-card rounded-2xl overflow-hidden shadow-lg border border-pink-100">
+        <div class="image-container">
+          <img id="kost2-image" src="image/putri.jpg" alt="Kost Putri Aman & Cantik" class="property-image w-full h-48 object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-pink-700 mb-3">👩 Kost Putri Aman &amp; Cantik</h3>
+          <p class="text-pink-600 mb-4 leading-relaxed">Khusus putri dengan keamanan 24 jam, dapur bersama yang bersih, dan suasana yang homey</p>
+          <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-pink-700">Rp 750.000<span class="text-lg">/bulan</span></span>
+            <button onclick="contactWhatsApp('Kost Putri Aman & Cantik')" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition duration-300 transform hover:scale-105">
+              💬 Tanya Detail
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Kost Campur -->
+      <div class="property-card rounded-2xl overflow-hidden shadow-lg border border-pink-100">
+        <div class="image-container">
+          <img id="kost3-image" src="image/campuran.jpg" alt="Kost Campur Ekonomis" class="property-image w-full h-48 object-cover">
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-pink-700 mb-3">💕 Kost Campur Ekonomis</h3>
+          <p class="text-pink-600 mb-4 leading-relaxed">Harga terjangkau dengan fasilitas standar yang memadai dan lingkungan yang friendly</p>
+          <div class="flex justify-between items-center">
+            <span class="text-3xl font-bold text-pink-700">Rp 600.000<span class="text-lg">/bulan</span></span>
+            <button onclick="contactWhatsApp('Kost Campur Ekonomis')" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition duration-300 transform hover:scale-105">
+              💬 Tanya Detail
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section
+<script>
+  function contactWhatsApp(property) {
+    const phone = '6281295096068';
+    const message = `Halo admin, saya tertarik dengan ${property}. Apakah masih tersedia?`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+</script>
+</section><!-- Kontrakan Section -->
+<section id="kontrakan" class="py-16 gradient-bg relative">
+  <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 id="kontrakan-title" class="text-5xl font-bold text-pink-700 mb-4">🏡 Kontrakan Keluarga Bahagia 🏡</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Kontrakan Card 1 -->
+      <div class="property-card rounded-2xl overflow-hidden shadow-xl border border-pink-200">
+        <div class="image-container">
+          <img id="kontrakan1-image" src="image/biasa.jpg" alt="Rumah Type 36 Cozy" class="property-image w-full h-64 object-cover">
+        </div>
+        <div class="p-8">
+          <h3 class="text-3xl font-bold text-pink-700 mb-4">🌟 Rumah Type 36 Cozy</h3>
+          <div class="text-pink-600 mb-6 space-y-2">
+            <p class="flex items-center"><span class="mr-2">🛏️</span> 2 Kamar Tidur Nyaman</p>
+            <p class="flex items-center"><span class="mr-2">🚿</span> 1 Kamar Mandi Bersih</p>
+            <p class="flex items-center"><span class="mr-2">🛋️</span> Ruang Tamu &amp; Dapur Lengkap</p>
+            <p class="flex items-center"><span class="mr-2">🏍️</span> Carport Motor Aman</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-4xl font-bold text-pink-700">Rp 2.500.000<span class="text-lg">/bulan</span></span>
+            <button onclick="contactWhatsApp('Rumah Type 36 Cozy')" class="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 rounded-full font-semibold transition duration-300 transform hover:scale-105">
+              📞 Hubungi Kami
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kontrakan Card 2 -->
+      <div class="property-card rounded-2xl overflow-hidden shadow-xl border border-pink-200">
+        <div class="image-container">
+          <img id="kontrakan2-image" src="image/premium.jpg" alt="Rumah Type 45 Premium" class="property-image w-full h-64 object-cover">
+        </div>
+        <div class="p-8">
+          <h3 class="text-3xl font-bold text-pink-700 mb-4">✨ Rumah Type 45 Premium</h3>
+          <div class="text-pink-600 mb-6 space-y-2">
+            <p class="flex items-center"><span class="mr-2">🛏️</span> 3 Kamar Tidur Luas</p>
+            <p class="flex items-center"><span class="mr-2">🚿</span> 2 Kamar Mandi Modern</p>
+            <p class="flex items-center"><span class="mr-2">🏠</span> Ruang Keluarga Luas</p>
+            <p class="flex items-center"><span class="mr-2">🚗</span> Garasi Mobil Tertutup</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-4xl font-bold text-pink-700">Rp 3.200.000<span class="text-lg">/bulan</span></span>
+            <button onclick="contactWhatsApp('Rumah Type 45 Premium')" class="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 rounded-full font-semibold transition duration-300 transform hover:scale-105">
+              📞 Hubungi Kami
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function contactWhatsApp(property) {
+    const phone = '6281295096068';
+    const message = `Halo admin, saya tertarik dengan ${property}. Apakah masih tersedia?`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+  }
+</script>
+  </section><!-- Fasilitas Section -->
+  <section id="fasilitas" class="py-16 bg-white relative">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+     <h2 id="fasilitas-title" class="text-5xl font-bold text-pink-700 mb-4">🌟 Fasilitas Lengkap &amp; Modern 🌟</h2>
+     <div class="section-divider"></div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"><!-- Fasilitas 1 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        ⚡
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">⚡ Listrik 24 Jam</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Listrik tersedia 24 jam dengan meteran terpisah dan backup generator</p>
+     </div><!-- Fasilitas 2 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        📶
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">📶 WiFi Super Cepat</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Internet WiFi gratis dengan kecepatan tinggi untuk streaming dan WFH</p>
+     </div><!-- Fasilitas 3 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        🛡️
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">🛡️ Keamanan 24 Jam</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Sistem keamanan CCTV dan penjaga 24 jam untuk keamanan maksimal</p>
+     </div><!-- Fasilitas 4 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        🚗
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">🚗 Parkir Luas</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Area parkir motor dan mobil yang luas dengan sistem keamanan terjamin</p>
+     </div><!-- Fasilitas 5 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        🍳
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">🍳 Dapur Bersama</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Dapur bersama yang bersih dengan peralatan masak lengkap dan modern</p>
+     </div><!-- Fasilitas 6 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        👕
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">👕 Laundry Service</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Layanan laundry profesional dengan harga terjangkau dan hasil bersih</p>
+     </div><!-- Fasilitas 7 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        ❄️
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">❄️ AC &amp; Kipas</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Pilihan kamar dengan AC dingin atau kipas angin sesuai budget</p>
+     </div><!-- Fasilitas 8 -->
+     <div class="facility-card p-8 rounded-2xl text-center shadow-lg border border-pink-100">
+      <div class="w-20 h-20 mx-auto mb-4 bg-pink-100 rounded-full flex items-center justify-center">
+       <div class="text-3xl">
+        📍
+       </div>
+      </div>
+      <h3 class="text-xl font-bold text-pink-700 mb-3">📍 Lokasi Strategis</h3>
+      <p class="text-pink-600 text-sm leading-relaxed">Dekat kampus, mall, dan pusat kota dengan akses transportasi mudah</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimoni Section -->
+  <section id="testimoni" class="py-16 gradient-bg relative">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+     <h2 id="testimoni-title" class="text-5xl font-bold text-pink-700 mb-4">💕 Testimoni Penghuni Bahagia 💕</h2>
+     <div class="section-divider"></div>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Testimoni 1 -->
+     <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+      <div class="flex items-center mb-6">
+       <div class="avatar mr-4">
+        AS
+       </div>
+       <div>
+        <h4 class="font-bold text-pink-700 text-lg">Andi Setiawan</h4>
+        <p class="text-pink-500 text-sm">Mahasiswa Teknik</p>
+       </div>
+      </div>
+      <div class="star-rating mb-4 text-xl">
+       ⭐⭐⭐⭐⭐
+      </div>
+      <p class="text-pink-600 leading-relaxed">"Kost yang sangat nyaman dan bersih! Fasilitas lengkap dan harga terjangkau untuk mahasiswa. Pemilik juga sangat ramah dan responsif. Recommended banget! 👍"</p>
+     </div><!-- Testimoni 2 -->
+     <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+      <div class="flex items-center mb-6">
+       <div class="avatar mr-4">
+        SR
+       </div>
+       <div>
+        <h4 class="font-bold text-pink-700 text-lg">Andini Rayhana</h4>
+        <p class="text-pink-500 text-sm">Karyawan Bank</p>
+       </div>
+      </div>
+      <div class="star-rating mb-4 text-xl">
+       ⭐⭐⭐⭐⭐
+      </div>
+      <p class="text-pink-600 leading-relaxed">"Sudah 2 tahun tinggal di sini, sangat puas dengan pelayanan dan fasilitasnya. Lokasi strategis dan mudah akses transportasi umum. Suasananya juga homey banget! 🏠"</p>
+     </div><!-- Testimoni 3 -->
+     <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+      <div class="flex items-center mb-6">
+       <div class="avatar mr-4">
+        BW
+       </div>
+       <div>
+        <h4 class="font-bold text-pink-700 text-lg">Budi Wijaya</h4>
+        <p class="text-pink-500 text-sm">Fresh Graduate</p>
+       </div>
+      </div>
+      <div class="star-rating mb-4 text-xl">
+       ⭐⭐⭐⭐⭐
+      </div>
+      <p class="text-pink-600 leading-relaxed">"Tempat yang tepat untuk fresh graduate seperti saya. Lingkungan aman, WiFi kencang, dan cocok untuk work from home. Fasilitas lengkap dengan harga bersahabat! 💻"</p>
+     </div><!-- Testimoni 4 -->
+     <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+      <div class="flex items-center mb-6">
+       <div class="avatar mr-4">
+        DP
+       </div>
+       <div>
+        <h4 class="font-bold text-pink-700 text-lg">Dewi Permata</h4>
+        <p class="text-pink-500 text-sm">Mahasiswa Psikologi</p>
+       </div>
+      </div>
+      <div class="star-rating mb-4 text-xl">
+       ⭐⭐⭐⭐⭐
+      </div>
+      <p class="text-pink-600 leading-relaxed">"Kost putri yang sangat aman dan nyaman! Fasilitas dapur bersama sangat membantu untuk memasak sendiri. Teman-teman sesama penghuni juga friendly. Love it! 💖"</p>
+     </div><!-- Testimoni 5 -->
+     <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+      <div class="flex items-center mb-6">
+       <div class="avatar mr-4">
+        RH
+       </div>
+       <div>
+        <h4 class="font-bold text-pink-700 text-lg">Rizki Hakim</h4>
+        <p class="text-pink-500 text-sm">Karyawan Swasta</p>
+       </div>
+      </div>
+      <div class="star-rating mb-4 text-xl">
+       ⭐⭐⭐⭐⭐
+      </div>
+      <p class="text-pink-600 leading-relaxed">"Kontrakan yang saya sewa sangat cocok untuk keluarga kecil. Lingkungan tenang dan tetangga yang ramah. Anak-anak juga senang bermain di area yang aman. Terima kasih! 👨‍👩‍👧‍👦"</p>
+     </div><!-- Testimoni 6 -->
+     <div class="testimonial-card p-8 rounded-2xl shadow-lg">
+      <div class="flex items-center mb-6">
+       <div class="avatar mr-4">
+        LM
+       </div>
+       <div>
+        <h4 class="font-bold text-pink-700 text-lg">Lisa Maharani</h4>
+        <p class="text-pink-500 text-sm">Ibu Rumah Tangga</p>
+       </div>
+      </div>
+      <div class="star-rating mb-4 text-xl">
+       ⭐⭐⭐⭐⭐
+      </div>
+      <p class="text-pink-600 leading-relaxed">"Rumah kontrakan yang sangat layak huni dengan harga yang reasonable. Desainnya cantik dan instagramable! Anak-anak juga senang tinggal di sini. Perfect! ✨"</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" class="py-16 bg-white relative">
+   <div class="container mx-auto px-6">
+    <div class="text-center mb-12">
+     <h2 id="contact-title" class="text-5xl font-bold text-pink-700 mb-4">📞 Hubungi Kami Sekarang 📞</h2>
+     <div class="section-divider"></div>
+    </div>
+    <div class="max-w-6xl mx-auto">
+     <div class="grid md:grid-cols-2 gap-10">
+      <div class="bg-gradient-to-br from-pink-50 to-white p-10 rounded-2xl shadow-lg border border-pink-100">
+       <h3 class="text-3xl font-bold text-pink-700 mb-8 flex items-center">📋 Informasi Kontak</h3>
+       <div class="space-y-6">
+        <div class="flex items-center p-4 bg-white rounded-xl shadow-sm">
+         <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+          <div class="text-2xl">
+           📍
+          </div>
+         </div>
+         <div>
+          <p class="font-semibold text-pink-700">Alamat</p><span id="address" class="text-pink-600">Jl. Mawar Indah No. 123, Kota Cantik</span>
+         </div>
+        </div>
+        <div class="flex items-center p-4 bg-white rounded-xl shadow-sm">
+         <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+          <div class="text-2xl">
+           📱
+          </div>
+         </div>
+         <div>
+          <p class="font-semibold text-pink-700">WhatsApp</p><span class="text-pink-600 font-mono">081295096068</span>
+         </div>
+        </div>
+        <div class="flex items-center p-4 bg-white rounded-xl shadow-sm">
+         <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+          <div class="text-2xl">
+           👤
+          </div>
+         </div>
+         <div>
+          <p class="font-semibold text-pink-700">Admin</p><span id="admin-name" class="text-pink-600">Ibu Andini (Admin Cantik)</span>
+         </div>
+        </div>
+       </div><button onclick="contactWhatsApp('Informasi Umum')" class="mt-8 w-full pink-gradient hover:shadow-xl text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center transition duration-300 transform hover:scale-105">
+        <div class="text-2xl mr-3">
+         💬
+        </div> Chat WhatsApp Sekarang </button>
+      </div>
+      <div class="bg-gradient-to-br from-white to-pink-50 p-10 rounded-2xl shadow-lg border border-pink-100">
+       <h3 class="text-3xl font-bold text-pink-700 mb-8 flex items-center">⏰ Jam Operasional</h3>
+       <div class="space-y-4">
+        <div class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm"><span class="font-semibold text-pink-700">Senin - Jumat</span> <span class="text-pink-600 font-mono">08:00 - 17:00</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm"><span class="font-semibold text-pink-700">Sabtu</span> <span class="text-pink-600 font-mono">08:00 - 15:00</span>
+        </div>
+        <div class="flex justify-between items-center p-4 bg-white rounded-xl shadow-sm"><span class="font-semibold text-pink-700">Minggu</span> <span class="text-pink-600 font-mono">09:00 - 12:00</span>
+        </div>
+       </div>
+       <div class="mt-8 p-6 bg-gradient-to-r from-pink-100 to-pink-50 rounded-2xl border border-pink-200">
+        <p class="text-pink-700 font-bold text-lg mb-2">💡 Tips Penting:</p>
+        <p class="text-pink-600 leading-relaxed">Hubungi kami via WhatsApp untuk respon yang lebih cepat! Kami siap membantu Anda menemukan hunian impian 24/7! 🌟</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="pink-gradient text-white py-12 relative overflow-hidden">
+   <div class="absolute inset-0 bg-black opacity-10"></div>
+   <div class="container mx-auto px-6 text-center relative z-10">
+    <div class="mb-6">
+     <h3 class="text-2xl font-bold mb-2">💕 Kost &amp; Kontrakan Cantik 💕</h3>
+     <p class="text-pink-100">Hunian berkualitas untuk kehidupan yang lebih baik dan bahagia</p>
+    </div>
+    <div class="border-t border-pink-300 pt-6">
+     <p class="text-lg">© 2024 Kost &amp; Kontrakan Cantik. Semua hak dilindungi.</p>
+     <p class="mt-2 text-pink-100">Dibuat dengan ❤️ untuk kebahagiaan Anda</p>
+    </div>
+   </div>
+   <div class="absolute top-5 left-5 text-4xl opacity-20 animate-pulse">
+    🌸
+   </div>
+   <div class="absolute bottom-5 right-5 text-3xl opacity-20 animate-bounce">
+    💖
+   </div>
+  </footer><!-- WhatsApp Float Button --> <a href="https://wa.me/6281295096068?text=Halo%20Ibu%20andini,%20saya%20tertarik%20dengan%20kost/kontrakan%20cantik%20yang%20tersedia.%20Bisa%20minta%20info%20lengkapnya?" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+   <div class="text-3xl">
+    💬
+   </div></a> <!-- Image Edit Modal -->
+  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+   <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+    <h3 class="text-2xl font-bold text-pink-700 mb-6 text-center">🖼️ Ganti Gambar</h3>
+    <div class="space-y-4">
+     <div><label class="block text-pink-600 font-semibold mb-2">Pilih URL Gambar:</label> <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg" class="w-full p-3 border-2 border-pink-200 rounded-xl focus:border-pink-500 focus:outline-none">
+     </div>
+     <div class="text-center text-pink-500 text-sm">
+      <p>💡 Tips: Gunakan URL gambar dari internet</p>
+      <p>Contoh: Unsplash, Pixabay, atau hosting gambar lainnya</p>
+     </div>
+    </div>
+    <div class="flex gap-4 mt-8"><button onclick="closeImageModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 py-3 rounded-xl font-semibold transition duration-300"> ❌ Batal </button> <button onclick="updateImage()" class="flex-1 pink-gradient hover:shadow-lg text-white py-3 rounded-xl font-semibold transition duration-300"> ✅ Ganti Gambar </button>
+    </div>
+   </div>
+  </div>
+  <script>
+        // Default configuration
+        const defaultConfig = {
+            business_name: "💕 Kost & Kontrakan Cantik",
+            tagline: "Hunian Nyaman dengan Penuh Kebahagiaan",
+            hero_title: "✨ Temukan Hunian Impian Anda ✨",
+            hero_description: "Kami menyediakan kost dan kontrakan berkualitas dengan desain cantik, fasilitas lengkap, dan suasana yang nyaman untuk wanita modern",
+            kost_title: "🌺 Pilihan Kost Terbaik 🌺",
+            kontrakan_title: "🏡 Kontrakan Keluarga Bahagia 🏡",
+            fasilitas_title: "🌟 Fasilitas Lengkap & Modern 🌟",
+            testimoni_title: "💕 Testimoni Penghuni Bahagia 💕",
+            contact_title: "📞 Hubungi Kami Sekarang 📞",
+            address: "Jl. Mawar Indah No. 123, Kota Cantik",
+            admin_name: "Ibu Andini (Admin Cantik)",
+            background_color: "#fdf2f8",
+            surface_color: "#ffffff",
+            text_color: "#be185d",
+            primary_action_color: "#ec4899",
+            secondary_action_color: "#22c55e"
+        };
+
+        let currentImageId = '';
+
+        // Image editing functions
+        function editImage(imageId, imageName) {
+            currentImageId = imageId;
+            document.getElementById('imageModal').classList.remove('hidden');
+            document.getElementById('imageUrl').value = '';
+            document.getElementById('imageUrl').focus();
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+            currentImageId = '';
+        }
+
+        function updateImage() {
+            const imageUrl = document.getElementById('imageUrl').value.trim();
+            if (imageUrl && currentImageId) {
+                const imageElement = document.getElementById(currentImageId);
+                if (imageElement) {
+                    imageElement.src = imageUrl;
+                    imageElement.onerror = function() {
+                        // Jika gambar gagal dimuat, kembali ke placeholder
+                        const imageName = imageElement.alt;
+                        const encodedName = encodeURIComponent(imageName);
+                        const placeholderColor = currentImageId.includes('kost1') ? '%23fdf2f8' : 
+                                               currentImageId.includes('kost2') ? '%23fce7f3' : 
+                                               currentImageId.includes('kost3') ? '%23fbcfe8' : 
+                                               currentImageId.includes('kontrakan1') ? '%23fdf2f8' : '%23fce7f3';
+                        
+                        this.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='${currentImageId.includes('kontrakan') ? '250' : '200'}' viewBox='0 0 400 ${currentImageId.includes('kontrakan') ? '250' : '200'}'%3E%3Crect width='400' height='${currentImageId.includes('kontrakan') ? '250' : '200'}' fill='${placeholderColor}'/%3E%3Ctext x='200' y='${currentImageId.includes('kontrakan') ? '125' : '100'}' text-anchor='middle' dy='.3em' font-family='Arial, sans-serif' font-size='${currentImageId.includes('kontrakan') ? '18' : '16'}' fill='%23be185d'%3E${encodedName}%3C/text%3E%3C/svg%3E`;
+                        this.alt = imageName;
+                        
+                        // Show error message
+                        showMessage('❌ Gambar gagal dimuat. Silakan coba URL lain.', 'error');
+                    };
+                    imageElement.onload = function() {
+                        showMessage('✅ Gambar berhasil diganti!', 'success');
+                    };
+                }
+                closeImageModal();
+            } else {
+                showMessage('⚠️ Silakan masukkan URL gambar yang valid.', 'warning');
+            }
+        }
+
+        // Show message function
+        function showMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `fixed top-4 right-4 z-50 p-4 rounded-xl shadow-lg transition-all duration-300 ${
+                type === 'success' ? 'bg-green-100 text-green-700 border border-green-300' :
+                type === 'error' ? 'bg-red-100 text-red-700 border border-red-300' :
+                'bg-yellow-100 text-yellow-700 border border-yellow-300'
+            }`;
+            messageDiv.textContent = message;
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.style.opacity = '0';
+                messageDiv.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(messageDiv);
+                }, 300);
+            }, 3000);
+        }
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // WhatsApp contact function
+        function contactWhatsApp(propertyType) {
+            const message = `Halo Ibu Andini, saya tertarik dengan ${propertyType}. Bisa minta informasi lebih detail dan jadwal lihat kamar?`;
+            const whatsappUrl = `https://wa.me/6281295096068?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+
+        // Element SDK implementation
+        async function onConfigChange(config) {
+            // Update text content
+            document.getElementById('business-name').textContent = config.business_name || defaultConfig.business_name;
+            document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
+            document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+            document.getElementById('hero-description').textContent = config.hero_description || defaultConfig.hero_description;
+            document.getElementById('kost-title').textContent = config.kost_title || defaultConfig.kost_title;
+            document.getElementById('kontrakan-title').textContent = config.kontrakan_title || defaultConfig.kontrakan_title;
+            document.getElementById('fasilitas-title').textContent = config.fasilitas_title || defaultConfig.fasilitas_title;
+            document.getElementById('testimoni-title').textContent = config.testimoni_title || defaultConfig.testimoni_title;
+            document.getElementById('contact-title').textContent = config.contact_title || defaultConfig.contact_title;
+            document.getElementById('address').textContent = config.address || defaultConfig.address;
+            document.getElementById('admin-name').textContent = config.admin_name || defaultConfig.admin_name;
+
+            // Update colors
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+            // Update background gradients
+            const gradientBgs = document.querySelectorAll('.gradient-bg');
+            gradientBgs.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${surfaceColor} 50%, #fce7f3 100%)`;
+            });
+
+            // Update surface colors
+            const surfaces = document.querySelectorAll('.bg-white, .property-card, .facility-card, .testimonial-card');
+            surfaces.forEach(el => {
+                el.style.backgroundColor = surfaceColor;
+            });
+
+            // Update text colors
+            const textElements = document.querySelectorAll('.text-pink-600, .text-pink-700, .text-pink-500');
+            textElements.forEach(el => {
+                el.style.color = textColor;
+            });
+
+            // Update primary action colors
+            const primaryButtons = document.querySelectorAll('.pink-gradient');
+            primaryButtons.forEach(el => {
+                el.style.background = `linear-gradient(135deg, ${primaryActionColor} 0%, #f472b6 100%)`;
+            });
+
+            // Update secondary action colors
+            const secondaryButtons = document.querySelectorAll('.bg-green-500');
+            secondaryButtons.forEach(el => {
+                el.style.backgroundColor = secondaryActionColor;
+            });
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            window.elementSdk.setConfig({ background_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            config.surface_color = value;
+                            window.elementSdk.setConfig({ surface_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            window.elementSdk.setConfig({ text_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            config.primary_action_color = value;
+                            window.elementSdk.setConfig({ primary_action_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            config.secondary_action_color = value;
+                            window.elementSdk.setConfig({ secondary_action_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["business_name", config.business_name || defaultConfig.business_name],
+                ["tagline", config.tagline || defaultConfig.tagline],
+                ["hero_title", config.hero_title || defaultConfig.hero_title],
+                ["hero_description", config.hero_description || defaultConfig.hero_description],
+                ["kost_title", config.kost_title || defaultConfig.kost_title],
+                ["kontrakan_title", config.kontrakan_title || defaultConfig.kontrakan_title],
+                ["fasilitas_title", config.fasilitas_title || defaultConfig.fasilitas_title],
+                ["testimoni_title", config.testimoni_title || defaultConfig.testimoni_title],
+                ["contact_title", config.contact_title || defaultConfig.contact_title],
+                ["address", config.address || defaultConfig.address],
+                ["admin_name", config.admin_name || defaultConfig.admin_name]
+            ]);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImageModal();
+            }
+        });
+
+        // Handle Enter key in URL input
+        document.getElementById('imageUrl').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                updateImage();
+            }
+        });
+
+        // Initialize Element SDK
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9959333e6466e77a',t:'MTc2MTY0MTU3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
