@@ -1,204 +1,111 @@
 <!doctype html>
 <html lang="id">
- <head>
+<head>
+  <!-- BASIC META -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kost dan Kontrakan Pink Pastel</title>
-  <script src="/_sdk/element_sdk.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO META -->
+  <title>Kost & Kontrakan Pink Pastel | Hunian Nyaman, Aman, dan Estetik</title>
+  <meta name="description" content="Kost dan kontrakan pink pastel dengan fasilitas lengkap, lingkungan aman, bersih, dan nyaman. Cocok untuk mahasiswa dan pekerja. Hubungi via WhatsApp sekarang.">
+  <meta name="keywords" content="kost pink pastel, kontrakan pastel, kost murah, kontrakan nyaman, kost mahasiswa, kontrakan estetik">
+  <meta name="author" content="Pink Pastel Property">
+  <meta name="robots" content="index, follow">
+
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://yourdomain.github.io/">
+
+  <!-- OPEN GRAPH (SOCIAL MEDIA) -->
+  <meta property="og:title" content="Kost & Kontrakan Pink Pastel | Hunian Nyaman & Estetik">
+  <meta property="og:description" content="Hunian kost dan kontrakan bernuansa pink pastel dengan fasilitas lengkap dan lokasi strategis.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.github.io/">
+  <meta property="og:image" content="https://yourdomain.github.io/assets/thumbnail.jpg">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kost & Kontrakan Pink Pastel">
+  <meta name="twitter:description" content="Hunian nyaman dan estetik untuk mahasiswa dan pekerja.">
+  <meta name="twitter:image" content="https://yourdomain.github.io/assets/thumbnail.jpg">
+
+  <!-- TAILWIND CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BXQG534M8L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-BXQG534M8L');
-</script>
-
-  <style>
-        body {
-            box-sizing: border-box;
-        }
-        
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-            z-index: 100;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .whatsapp-float:hover {
-            background-color: #128c7e;
-            transform: scale(1.1);
-            animation: none;
-        }
-        
-        .property-card {
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%);
-        }
-        
-        .property-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.15);
-        }
-        
-        .facility-card {
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #fce7f3 0%, #ffffff 100%);
-        }
-        
-        .facility-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.1);
-        }
-        
-        .testimonial-card {
-            background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 100%);
-            border: 1px solid #f9a8d4;
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.1);
-        }
-        
-        .star-rating {
-            color: #f59e0b;
-        }
-        
-        .avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            border: 3px solid #fce7f3;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #fdf2f8 0%, #ffffff 50%, #fce7f3 100%);
-        }
-        
-        .pink-gradient {
-            background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
-        }
-        
-        .section-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #f9a8d4, transparent);
-            margin: 2rem 0;
-        }
-        
-        .floating-hearts {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            opacity: 0.1;
-            font-size: 2rem;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .nav-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: #ec4899;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: linear-gradient(90deg, #ec4899, #f472b6);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .property-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .property-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(236, 72, 153, 0.2);
-        }
-
-        .image-edit-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(236, 72, 153, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        .image-container:hover .image-edit-overlay {
-            opacity: 1;
-        }
-
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-    </style>
-  <style>@view-transition { navigation: auto; }</style>
+  <!-- SDK -->
+  <script src="/_sdk/element_sdk.js"></script>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
+
+  <!-- CUSTOM STYLE -->
+  <style>
+    body { box-sizing: border-box; }
+
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 40px;
+      right: 40px;
+      background-color: #25d366;
+      color: #fff;
+      border-radius: 50px;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+      z-index: 100;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+
+  <!-- VIEW TRANSITION -->
+  <style>@view-transition { navigation: auto; }</style>
+
+  <!-- SCHEMA JSON-LD (RICH SNIPPET) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Kost & Kontrakan Pink Pastel",
+    "description": "Hunian kost dan kontrakan bernuansa pink pastel yang nyaman, aman, dan estetik.",
+    "url": "https://yourdomain.github.io/",
+    "telephone": "+62-812-3456-7890",
+    "priceRange": "Rp500.000 - Rp2.000.000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Contoh No. 123",
+      "addressLocality": "Tangerang",
+      "addressRegion": "Banten",
+      "addressCountry": "ID"
+    },
+    "amenityFeature": [
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "WiFi",
+        "value": true
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Kamar Mandi Dalam",
+        "value": true
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        "name": "Parkir",
+        "value": true
+      }
+    ]
+  }
+  </script>
+
+</head>
  <body class="min-h-full gradient-bg"><!-- Header -->
   <header class="bg-white shadow-lg sticky top-0 z-50 border-b-2 border-pink-100">
    <div class="container mx-auto px-6 py-4">
@@ -886,4 +793,5 @@
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9959333e6466e77a',t:'MTc2MTY0MTU3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>
+
 
